@@ -12,14 +12,15 @@ const questions = [
 
 
 const DOM = {
-    tableContainer : document.querySelector('.table tbody'),
+    
+    tableContainer : document.querySelector('.table tbody'),    
     
     cardConteiner : document.querySelector('.main'),
     
-    createCard(opcao1 = "",opcao2 = "",opcao3 = "",opcao4 = ""){
+    createCard(){        
         const card = `
             <div class="card">
-                <form action="#" name="exemplo">
+                <form action="#">
                     <div>
                         <h3>Pergunta ?</h3>
                             <textarea cols="50" rows="1" placeholder="Faça uma pergunta">faça uma pergunta</textarea>
@@ -28,26 +29,25 @@ const DOM = {
                         <table class="table">
                             <tbody>
                                 <div>
-                                    <tr> 
-                                        ${opcao1}
-                                    </tr>
-                                    <tr> 
-                                        ${opcao2}
-                                    </tr>
-                                    <tr> 
-                                        ${opcao3}
-                                    </tr>
-                                    <tr> 
-                                        ${opcao4}
-                                    </tr>
+                                    oi
                                 </div>
                             </tbody>
                         </table>
-                    </div>
+                        <button>Adicionar opção</button>
+                    </div>                    
                 </form>
             </div>
         `
         return card;
+    },
+
+    createForm(){        
+        const form = `        
+            <td><input type="radio" name="nome" id="nome"></td>
+            <td><input type="text" name="alternativa" id="alternativa" value="Opção"></td>
+            <td><button>X</button></td>                
+        `
+        return form;
     },
 
     addForm(){
@@ -58,24 +58,23 @@ const DOM = {
 
     addCard(){
         const newCard = document.createElement('div');
-        newCard.innerHTML = DOM.createCard(DOM.createForm(),DOM.createForm());
+        newCard.innerHTML = DOM.createCard();
         DOM.cardConteiner.appendChild(newCard);
     },    
     removForm(){
         DOM.tableContainer.innerHTML = "";
-    },
-    
-    createForm(){        
-        const form = `        
-            <td><input type="radio" name="nome" id="nome"></td>
-            <td><input type="text" name="alternativa" id="alternativa" value="Opção"></td>
-            <td><button>X</button></td>                
-        `
-        return form;
-    },
+    },    
+}
+
+function getTable2(index){
+   const tableContainer2 = document.querySelectorAll('.table')[index];
+   return  tableContainer2;
 }
 
 DOM.addCard();
-DOM.addCard();
+DOM.addForm();
+DOM.addForm();
+console.log(getTable2(0));
+
 
 
