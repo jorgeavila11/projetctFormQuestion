@@ -1,0 +1,58 @@
+:root{
+    --lite-white:#fffafa;
+    --lite-grey:#e0e0e0;
+    --dark-grey:#eeeeee;
+}
+
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+}
+
+html{
+    background-color:var(--lite-grey);
+}
+.card{
+    border-radius: 0.5rem;
+    color:#06D6A0;
+    margin: 2rem;
+    padding: 2rem;
+    width: 90%;
+    background: var(--lite-white);
+
+}
+
+h3{
+    display: none;
+}
+textarea{
+    border: none;
+    font-size: 20px;
+    border-bottom: 2px solid var(--lite-grey);
+    background: var(--lite-white);
+    padding-top: 2rem;
+}
+
+textarea:focus{
+    border-color: red;
+    background: var(--dark-grey);
+}
+
+
+.table{    
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+input{
+    border: none;
+    border-bottom: 2px solid var(--lite-grey);
+    background: var(--lite-white);   
+    margin: 2px;        
+}
+
+input:focus{
+    height: 2rem;
+    width: 20rem;
+    background: var(--dark-grey);
+}
