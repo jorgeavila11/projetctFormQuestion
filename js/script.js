@@ -13,11 +13,10 @@ const questions = [
 
 const DOM = {
     
-    tableContainer : document.querySelector('.table tbody'),    
-    
+    //tableContainer : document.querySelectorAll('table'),    
     cardConteiner : document.querySelector('.main'),
     
-    createCard(){        
+    createCard(){
         const card = `
             <div class="card">
                 <form action="#">
@@ -29,7 +28,7 @@ const DOM = {
                         <table class="table">
                             <tbody>
                                 <div>
-                                    oi
+                                    dentro
                                 </div>
                             </tbody>
                         </table>
@@ -41,40 +40,72 @@ const DOM = {
         return card;
     },
 
-    createForm(){        
-        const form = `        
-            <td><input type="radio" name="nome" id="nome"></td>
-            <td><input type="text" name="alternativa" id="alternativa" value="Opção"></td>
-            <td><button>X</button></td>                
-        `
-        return form;
-    },
-
-    addForm(){
-        const tr = document.createElement('tr');
-        tr.innerHTML = DOM.createForm();
-        DOM.tableContainer.appendChild(tr); 
-    },
-
+    // createForm(){        
+    //     const form = `        
+    //         <td><input type="radio" name="nome" id="nome"></td>
+    //         <td><input type="text" name="alternativa" id="alternativa" value="Opção"></td>
+    //         <td><button>X</button></td>
+    //     `
+    //     return form;
+    // },
     addCard(){
         const newCard = document.createElement('div');
         newCard.innerHTML = DOM.createCard();
         DOM.cardConteiner.appendChild(newCard);
     },    
+
+    // addForm(){
+    //     const tr = document.createElement('tr');
+    //     tr.innerHTML = DOM.createForm();
+    //     DOM.tableContainer.appendChild(tr); 
+    //     
+    // },
+    
     removForm(){
         DOM.tableContainer.innerHTML = "";
     },    
-}
-
-function getTable2(index){
-   const tableContainer2 = document.querySelectorAll('.table')[index];
-   return  tableContainer2;
+    
 }
 
 DOM.addCard();
-DOM.addForm();
-DOM.addForm();
-console.log(getTable2(0));
+DOM.addCard();
+
+
+var tableContainer = document.querySelectorAll('table')[0];
+console.log(tableContainer);
+
+
+
+function createForm(){ 
+    const form = `        
+        <td><input type="radio" name="nome" id="nome"></td>
+        <td><input type="text" name="alternativa" id="alternativa" value="Opção"></td>
+        <td><button>X</button></td>
+    `
+    return form;
+};
+
+function addForm(){
+    const tr = document.createElement('tr');
+    tr.innerHTML = createForm();    
+    tableContainer.appendChild(tr);
+}
+
+addForm();
+addForm();
+addForm();
+addForm();
+
+
+
+
+
+
+
+
+
+
+
 
 
 
