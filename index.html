@@ -12,27 +12,24 @@
 <body>
     <div class="main">
         <div class="card">
-            <form action="#" name="exemplo">
+            <form action="" onsubmit="Form.submit(event)">
                 <div>
                     <div>
                         <h3>Pergunta ?</h3>
                         <textarea cols="50" rows="1" placeholder="Faça uma pergunta">faça uma pergunta</textarea>
                     </div>
                     <div class="divtable">
-                        <table class="table">
-                            <tbody>
-                                <div>
-                                    fora
-                                </div>
+                        <table class="tablecardExtra0">
+                            <tbody>                               
                             </tbody>
                         </table>
-                        <button>Adicionar opção</button>
+                        <button onclick="adicionaForm()">Adicionar opção</button>                     
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <button id="inserir_questao">Nova Questão</button>
+    <button id="inserir_questao" onclick="adicionarCard()">Nova Questão</button>
     <script src="./js/script.js"></script>
 </body>
 
