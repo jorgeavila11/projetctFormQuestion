@@ -51,7 +51,7 @@ input{
     margin: 2px;        
 }
 
-input:focus{
+#alternativa:focus{
     height: 2rem;
     width: 20rem;
     background: var(--dark-grey);

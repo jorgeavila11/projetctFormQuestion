@@ -1,13 +1,18 @@
 var idContador = 0;
 var idFormulario = 0;
+
+
+
 const questions = [
     {
         question:'Quanto é 2 + 2 ?',
         options : ["1","2","3","4"],
+        optionCorrect: 1
     },
     {
         question:'',
-        options:[]
+        options:[],
+        optionCorrect: 1
     },
 ]
 
@@ -31,7 +36,7 @@ const DOM = {
                         <table class="table${idCard}">
                             <tbody>
                                 <div>
-                                    dentro
+                                    
                                 </div>
                             </tbody>
                         </table>
@@ -54,7 +59,7 @@ const DOM = {
 
 const DOMForm = { 
     
-    //tableContainer : document.querySelectorAll('table tbody')[0],    
+    tableContainer : document.querySelectorAll('table')[0],    
     
     createForm(){
         
@@ -73,11 +78,31 @@ const DOMForm = {
         el.appendChild(tr);
         
         console.log(el);
+
         
         // const tr = document.createElement('tr');        
         // tr.innerHTML = DOMForm.createForm();
         // DOMForm.tableContainer.appendChild(tr);        
-    }
+    },
+
+    addFormu(){     
+        
+        const tr = document.createElement('tr');        
+        tr.innerHTML = DOMForm.createForm();
+        DOMForm.tableContainer.appendChild(tr);
+        
+    },
+
+    // //pegando dados do formulário
+    // getDadosForm(){
+        
+    //     const dadosForm = {
+    //         questão : '',
+    //         resposta : {}
+    //     }
+    //     return dadosForm;
+    // }
+
 }
 
 const Form = {
@@ -86,16 +111,29 @@ const Form = {
     },
 }
 
+
+
+//Adiciona uma nova questão/card
 function adicionarCard(){    
     DOM.addCard();
 }
 
+//adiciona opções nas novas questões
 function adicionaForm(e){    
     DOMForm.addForm(e.id);
 }
+//adiciona opções na questão base 01 do card
+function adicionaFormu(){    
+    DOMForm.addFormu();
+}
 
+function salvar(){
+    const pergunta = document.querySelector('#pergunta');
+    console.log(pergunta.value);
 
-
+    const alternativa = document.querySelectorAll('#alternativa');
+    alternativa.forEach(alternativa => console.log(alternativa.value));
+}
 
 
 
