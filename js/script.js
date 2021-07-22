@@ -30,7 +30,7 @@ const DOM = {
                 <form action="" onsubmit="Form.submit(event)">
                     <div>
                         <h3>Pergunta ?</h3>
-                            <textarea cols="50" rows="1" placeholder="Faça uma pergunta">faça uma pergunta</textarea>
+                            <textarea cols="50" rows="1" id="pergunta" placeholder="Faça uma pergunta">faça uma pergunta</textarea>
                     </div>
                     <div class="divtable">
                         <table class="table${idCard}">
@@ -128,8 +128,8 @@ function adicionaFormu(){
 }
 
 function salvar(){
-    const pergunta = document.querySelector('#pergunta');
-    console.log(pergunta.value);
+    const pergunta = document.querySelectorAll('#pergunta');
+    pergunta.forEach(pergunta => console.log(pergunta.value))
 
     const alternativa = document.querySelectorAll('#alternativa');
     alternativa.forEach(alternativa => console.log(alternativa.value));
