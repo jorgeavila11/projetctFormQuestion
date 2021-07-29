@@ -1,21 +1,26 @@
 var idContador = 0;
 var idFormulario = 0;
 
+let dados = {    
+    pergunta : "1 + 1",    
+    resposta : {
+        resposta1: "1",
+        resposta2: "2",
+        resposta3: "3",
+        resposta4: "4",
+        resposta5: "5", 
+    }
+}
 
+//capturando dados do formulário
+function salvar(){
+    
+    const pergunta = document.querySelectorAll(`#pergunta`);
+    pergunta.forEach(pergunta => console.log(pergunta.value));
 
-const questions = [
-    {
-        question:'Quanto é 2 + 2 ?',
-        options : ["1","2","3","4"],
-        optionCorrect: 1
-    },
-    {
-        question:'',
-        options:[],
-        optionCorrect: 1
-    },
-]
-
+    const alternativa = document.querySelectorAll('#alternativa');
+    alternativa.forEach(alternativa => console.log(alternativa.value));
+}
 
 const DOM = {
     
@@ -30,7 +35,7 @@ const DOM = {
                 <form action="" onsubmit="Form.submit(event)">
                     <div>
                         <h3>Pergunta ?</h3>
-                            <textarea cols="50" rows="1" id="pergunta" placeholder="Faça uma pergunta">faça uma pergunta</textarea>
+                            <textarea cols="50" rows="1" id="pergunta" class="${idCard}" placeholder="Faça uma pergunta">faça uma pergunta</textarea>
                     </div>
                     <div class="divtable">
                         <table class="table${idCard}">
@@ -57,12 +62,12 @@ const DOM = {
     
 }
 
+
 const DOMForm = { 
     
     tableContainer : document.querySelectorAll('table')[0],    
     
-    createForm(){
-        
+    createForm(){        
         const form = `        
             <td><input type="radio" name="nome" id="nome"></td>
             <td><input type="text" name="alternativa" id="alternativa" value="Opção"></td>
@@ -75,34 +80,69 @@ const DOMForm = {
         const tr = document.createElement('tr');
         const el = document.getElementsByClassName("table"+e)[0];
         tr.innerHTML = DOMForm.createForm();
-        el.appendChild(tr);
-        
+        el.appendChild(tr);        
         console.log(el);
-
-        
         // const tr = document.createElement('tr');        
         // tr.innerHTML = DOMForm.createForm();
         // DOMForm.tableContainer.appendChild(tr);        
     },
 
-    addFormu(){     
-        
+    addFormu(){         
         const tr = document.createElement('tr');        
         tr.innerHTML = DOMForm.createForm();
-        DOMForm.tableContainer.appendChild(tr);
-        
+        DOMForm.tableContainer.appendChild(tr);        
     },
 
-    // //pegando dados do formulário
+    //pegando dados do formulário e inserindo em um array
     // getDadosForm(){
-        
-    //     const dadosForm = {
-    //         questão : '',
-    //         resposta : {}
-    //     }
-    //     return dadosForm;
-    // }
+    //     let per = [] ;
+    //     let resp = [];
+    //     let pergunta = document.querySelectorAll(`#pergunta`);
+    //     pergunta.forEach(pergunta => per.push(pergunta.value));
+    //     //return pergunta.forEach(pergunta => console.log(pergunta.value));
+    //     console.log(per);       
+    //     let alternativa = document.querySelectorAll("#alternativa");
+    //     alternativa.forEach(alternativa => resp.push(alternativa.value));
+    //     console.log(resp);
+    // },
 
+    //pegar Dados
+    // getDadosForm2(){
+    //      const dados = {
+    //          pergunta : "ola",
+    //          resposta : "mundo"
+    //      } 
+    //  },
+    // getDadosForm(){          
+    //       let pergunta = document.querySelectorAll("#pergunta");
+    //       let alternativa = document.querySelectorAll("#alternativa"); 
+    //       let per = [];
+    //       let resp = [];
+    //       for(var i = 0; i < pergunta.length; i++ ){               
+    //            for(var j = 0; j < alternativa.length; j++){
+    //                 per[i] = pergunta[i].value;                  
+    //                 resp[j] = alternativa[j].value
+    //                 console.log(per[i]);  
+    //                 console.log(resp[j]); 
+    //            }
+    //         }
+          
+    //     // let alternativa = document.querySelectorAll("#alternativa");
+    //     // return alternativa[0].value;        
+    // }
+    
+    getDadosForm(){
+        var i;
+        let pergunta = document.querySelectorAll("#pergunta");        
+        for(i = 0; i < pergunta.length ; i++){
+            var newPergunta = "pergunta" + i;
+            var newValor = pergunta[i].value;
+            dados[newPergunta] = newValor;           
+        }
+        
+        return dados
+        
+    }
 }
 
 const Form = {
@@ -111,10 +151,19 @@ const Form = {
     },
 }
 
+// const Question = {
+//     pergunta : document.querySelectorAll('#pergunta'),    
+//     getQuestion(){
+//         console.log(this.pergunta);
+//     }
+// }
 
+function impPergunta(){
+    Question.getQuestion();
+}
 
 //Adiciona uma nova questão/card
-function adicionarCard(){    
+function adicionarCard(){
     DOM.addCard();
 }
 
@@ -127,13 +176,11 @@ function adicionaFormu(){
     DOMForm.addFormu();
 }
 
-function salvar(){
-    const pergunta = document.querySelectorAll('#pergunta');
-    pergunta.forEach(pergunta => console.log(pergunta.value))
-
-    const alternativa = document.querySelectorAll('#alternativa');
-    alternativa.forEach(alternativa => console.log(alternativa.value));
+function pegarDados(){
+   console.log(DOMForm.getDadosForm());   
 }
+
+
 
 
 
