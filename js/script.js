@@ -1,6 +1,7 @@
 var idContador = 0;
 var idFormulario = 0;
 
+//Objeto que guarda as preguntas e resposta
 let dados = {    
     pergunta : "1 + 1",    
     resposta : {
@@ -104,32 +105,7 @@ const DOMForm = {
     //     let alternativa = document.querySelectorAll("#alternativa");
     //     alternativa.forEach(alternativa => resp.push(alternativa.value));
     //     console.log(resp);
-    // },
-
-    //pegar Dados
-    // getDadosForm2(){
-    //      const dados = {
-    //          pergunta : "ola",
-    //          resposta : "mundo"
-    //      } 
-    //  },
-    // getDadosForm(){          
-    //       let pergunta = document.querySelectorAll("#pergunta");
-    //       let alternativa = document.querySelectorAll("#alternativa"); 
-    //       let per = [];
-    //       let resp = [];
-    //       for(var i = 0; i < pergunta.length; i++ ){               
-    //            for(var j = 0; j < alternativa.length; j++){
-    //                 per[i] = pergunta[i].value;                  
-    //                 resp[j] = alternativa[j].value
-    //                 console.log(per[i]);  
-    //                 console.log(resp[j]); 
-    //            }
-    //         }
-          
-    //     // let alternativa = document.querySelectorAll("#alternativa");
-    //     // return alternativa[0].value;        
-    // }
+    // },    
     
     getDadosForm(){
         var i;
@@ -151,12 +127,6 @@ const Form = {
     },
 }
 
-// const Question = {
-//     pergunta : document.querySelectorAll('#pergunta'),    
-//     getQuestion(){
-//         console.log(this.pergunta);
-//     }
-// }
 
 function impPergunta(){
     Question.getQuestion();
