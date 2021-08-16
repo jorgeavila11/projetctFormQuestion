@@ -4,9 +4,27 @@ var idFormulario = 0;
 var cont = 0;
 
 //Objeto que guarda as preguntas e resposta
-let dados = {    
-    pergunta : "1 + 1",    
-    resposta : {}
+let dados = {
+    questao1 : {
+        pergunta1 : "1 + 1",    
+        resposta1 : {
+            alternativa1 : "opcao1",
+            alternativa2 : "opcao2",
+            alternativa3 : "opcao3",
+            alternativa4 : "opcao4",
+            alternativa5 : "opcao5",       
+        }
+    },
+    questao2 : {
+        pergunta2 : "1 + 1",    
+        resposta2 : {
+            alternativa1 : "opcao1",
+            alternativa2 : "opcao2",
+            alternativa3 : "opcao3",
+            alternativa4 : "opcao4",
+            alternativa5 : "opcao5",       
+        }
+    }
 }
 
 //capturando dados do formulário
@@ -26,7 +44,7 @@ const DOM = {
     
     createCard(){
         idContador++;        
-        var idCard = "cardExtra"+idContador;        
+        var idCard = "cardExtra"+ idContador;        
         var card = `
             <div class="card">
                 <form action="" onsubmit="Form.submit(event)">
@@ -64,12 +82,13 @@ const DOMForm = {
     
     tableContainer : document.querySelectorAll('table')[0],    
     
-    createForm(){        
+    createForm(){
+        
         idContadorAlt = idContador;
-        var idAlt = "altExtra"+idContadorAlt;
+        var idAlt = "altExtra" + idContadorAlt;
         const form = `        
             <td><input type="radio" name="nome" id="nome"></td>
-            <td><input type="text" name="alternativa" id="${idAlt}" value="Opção"></td>
+            <td><input type="text" name="alternativa" class="alternativa" id="${idAlt}" value="Opção"></td>
             <td><button>X</button></td>
             `
         return form;
@@ -80,7 +99,7 @@ const DOMForm = {
         const el = document.getElementsByClassName("table"+e)[0];
         tr.innerHTML = DOMForm.createForm();
         el.appendChild(tr);        
-        console.log(el);
+        //console.log(el);
         // const tr = document.createElement('tr');        
         // tr.innerHTML = DOMForm.createForm();
         // DOMForm.tableContainer.appendChild(tr);        
@@ -142,8 +161,25 @@ const DOMForm = {
     },
 
     getDadosForm(){
-    
-    
+        let pergunta = document.querySelectorAll("#pergunta");                
+        //pega todas as incidencias de altExtra que foram criadas
+        
+        for( var a = 0; a <= idContador; a++){
+            var alternativas = [];
+            var dado = new Object();
+            var newQuestao = "pergunta" + a;            
+            var newPergunta = pergunta[a].value;
+            dado[newQuestao] = newPergunta; 
+            var newResp = "reposta" + a;
+            for( r = 0; r <= 3; r++){
+                var newAlternativa = "alternativa"+ r;// so esta faltando inserir as opções               
+                alternativas.push(newAlternativa);
+                dado[newResp] = alternativas;                               
+            }            
+            console.log(dado);
+
+        }
+        
     }
 
 }
@@ -174,7 +210,7 @@ function adicionaFormu(){
 }
 
 function pegarDados(){
-   console.log(DOMForm.getDadosForm(0));
+   DOMForm.getDadosForm();
 }
 
 
