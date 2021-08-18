@@ -43,7 +43,7 @@ const DOM = {
     cardConteiner : document.querySelector('.main'),
     
     createCard(){
-        idContador++;        
+        idContador++;
         var idCard = "cardExtra"+ idContador;        
         var card = `
             <div class="card">
@@ -60,7 +60,7 @@ const DOM = {
                                 </div>
                             </tbody>
                         </table>
-                        <button id=${idCard} onclick="adicionaForm(${idCard})">Adicionar opção</button>
+                        <button id=${idCard} class=${idContador} onclick="adicionaForm(${idCard},${idContador})">Adicionar opção</button>
                     </div> 
                 </form>
             </div>
@@ -82,23 +82,24 @@ const DOMForm = {
     
     tableContainer : document.querySelectorAll('table')[0],    
     
-    createForm(){
-        
+    createForm(){        
         idContadorAlt = idContador;
-        var idAlt = "altExtra" + idContadorAlt;
+        var idAlt = "alternativa" + idContadorAlt;
         const form = `        
             <td><input type="radio" name="nome" id="nome"></td>
             <td><input type="text" name="alternativa" class="alternativa" id="${idAlt}" value="Opção"></td>
-            <td><button>X</button></td>
-            `
+            <td><button>X</button></td>`
         return form;
     },
     
-    addForm(e){
+    addForm(e,cont){
+        idContador = cont;
         const tr = document.createElement('tr');
         const el = document.getElementsByClassName("table"+e)[0];
         tr.innerHTML = DOMForm.createForm();
-        el.appendChild(tr);        
+        el.appendChild(tr);
+        
+        
         //console.log(el);
         // const tr = document.createElement('tr');        
         // tr.innerHTML = DOMForm.createForm();
@@ -108,7 +109,8 @@ const DOMForm = {
     addFormu(){         
         const tr = document.createElement('tr');        
         tr.innerHTML = DOMForm.createForm();
-        DOMForm.tableContainer.appendChild(tr);        
+        DOMForm.tableContainer.appendChild(tr);
+               
     },
     paraDepois(){
     //pegando dados do formulário e inserindo em um array
@@ -162,22 +164,25 @@ const DOMForm = {
 
     getDadosForm(){
         let pergunta = document.querySelectorAll("#pergunta");                
-        //pega todas as incidencias de altExtra que foram criadas
-        
-        for( var a = 0; a <= idContador; a++){
-            var alternativas = [];
+        //pega todas as incidencias de altExtra que foram criadas        
+        for( var a = 1; a < pergunta.length; a++){
+            let alternativa = document.querySelectorAll("#alternativa"+ a);                       
+            var alternativas = new Array();
             var dado = new Object();
             var newQuestao = "pergunta" + a;            
             var newPergunta = pergunta[a].value;
             dado[newQuestao] = newPergunta; 
-            var newResp = "reposta" + a;
-            for( r = 0; r <= 3; r++){
-                var newAlternativa = "alternativa"+ r;// so esta faltando inserir as opções               
-                alternativas.push(newAlternativa);
-                dado[newResp] = alternativas;                               
+            var newResp = "reposta" + a;                        
+            for( r = 0; r < alternativa.length; r++){
+                //var newAlternativa = "alternativa"+ r;// so esta faltando inserir as opções
+                var valAlternativas = alternativa[r].value;
+                alternativas.push(valAlternativas);
+                dado[newResp] = alternativas;
+                
             }            
+            
             console.log(dado);
-
+            
         }
         
     }
@@ -201,8 +206,9 @@ function adicionarCard(){
 }
 
 //adiciona opções nas novas questões
-function adicionaForm(e){    
-    DOMForm.addForm(e.id);
+function adicionaForm(e,cont){
+    DOMForm.addForm(e.id,cont);
+    
 }
 //adiciona opções na questão base 01 do card
 function adicionaFormu(){    
